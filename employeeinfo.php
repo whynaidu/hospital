@@ -1,3 +1,6 @@
+<?php  
+include("configure.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,81 +25,128 @@
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
     <!-- Navbar -->
+    <!-- Navbar -->
     <?php include("header.php")?>
 
+    <!-- /.navbar -->
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <?php include("sidebar.php")?>
 
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>DataTables</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">DataTables</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
       </section>
 
       <!-- Main content -->
       <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- /.card -->
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">DataTable with default features</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+
+                      <tr>
+
+                        <th>
+                          Name
+                        </th>
+
+                        <th>
+                          Employee Code
+                        </th>
+
+                        <th>
+                          age
+                        </th>
+                        <th>
+                          Gender
+                        </th>
+                        <th>
+                          Department
+                        </th>
+                        <th>
+                          Company Name
+                        </th>
 
 
-        <div class="card">
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
-              <thead>
-                <tr>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php     
+    $sql=mysqli_query($conn,"select employee.name  as nm,employee.age  as ag, employee.employee_code  as ecode, employee.gender as gen,company.company_name as cpn from employee inner join company on employee.emp_id=company.id");
+    while($arr=mysqli_fetch_array($sql)){
+    ?>
+                      <tr>
+                        <td>
+                          <?php echo $arr['nm'];?>
+                        </td>
+                        <td>
+                          <?php echo $arr['ecode'];?>
+                        </td>
+                        <td>
+                          <?php echo $arr['ag'];?>
+                        </td>
+                        <td>
+                          <?php echo $arr['gen'];?>
+                        </td>
+                        <td>
+                          <?php echo $arr['cat'];?>
+                        </td>
+                        <td>
+                          <?php echo $arr['cpn'];?>
+                        </td>
+                      </tr>
 
-                  <th>
-                    Name
-                  </th>
-                  <th>
-                    Employee Code
-                  </th>
-                  <th>
-                    Age
-                  </th>
-                  <th>
-                    Gender
-                  </th>
-                  <th>
-                    Department
-                  </th>
 
+                      <?php }  ?>
 
-                  <th>
-                    Company Name
-
-                  </th>
-
-                </tr>
-              </thead>
-
-              <tbody>
-
-              </tbody>
-            </table>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
           </div>
-          <!-- /.card-body -->
+          <!-- /.row -->
         </div>
-        <!-- /.card -->
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
     </div>
-    <!-- /.col -->
-  
-  <!-- /.row -->
-  
-  <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
-  <!-- /.content-wrapper -->
-  <?php include("footer.php")?>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- /.content-wrapper -->
+    <?php include("footer.php") ?>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
@@ -104,7 +154,7 @@
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- DataTables  & Plugins -->
+  <!-- DataTables  & plugins -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -140,7 +190,6 @@
         "responsive": true,
       });
     });
-
   </script>
 </body>
 

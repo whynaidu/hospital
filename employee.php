@@ -1,3 +1,28 @@
+<?php 
+include('configure.php');
+
+
+    if(isset($_POST['submit']))
+    {
+        $name = $_POST['name'];
+        $age = $_POST['age'];
+        $office_no = $_POST['office_no'];
+        $address = $_POST['address'];
+        $employee_code = $_POST['employee_code'];
+        $city = $_POST['city'];
+        $gender = $_POST['gender'];
+        $pincode = $_POST['pincode'];
+        $contact_no = $_POST['contact_no'];
+        $id=$_POST['company_name'];
+        $sql="INSERT INTO `employee`(`name`,`age`,`office_no`,`address`, `pincode`,`contact_no`,`employee_code`,`gender`, `emp_id`) VALUES ('$name','$age','$office_no','$address','$pincode','$contact_no','$employee_code','$gender','$id')";
+        if (mysqli_query($conn, $sql)){
+          echo "<script> alert ('New record has been added successfully !');</script>";
+       } else {
+          echo "<script> alert ('connection failed !');</script>";
+       }
+      
+    }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,12 +55,27 @@
   <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    .select2-container .select2-selection--single {
+      height: 34px !important;
+    }
+
+    .select2-container--default .select2-selection--single {
+      border: 1px solid #ccc !important;
+      border-radius: 4px !important;
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
     <!-- Navbar -->
     <?php include("header.php")?>
+
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -54,146 +94,199 @@
       <section class="content">
         <div class="container-fluid">
           <!-- SELECT2 EXAMPLE -->
-          <h2>Hospital Name</h2>
-          <h6>Hospital Address</h6>
+          <h4>Employee Registration</h4>
           <div class="card card-default">
+            <form class="form-sample" method="post">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Company Name</label>
 
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Company Name</label>
-                    <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
-                    </select>
-                  </div>
-                  <!-- /.form-group -->
-                  <div class="form-group">
-                    <label>Employee Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Employee Name">
-                  </div>
-                  <!-- /.form-group -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Employee Id</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <!-- /.form-group -->
-                  <div class="form-group">
-                    <label>City</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <!-- /.form-group -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
+                      <?php 
+                  $query=mysqli_query($conn,"select * from company");
+                  ?>
 
 
-              <div class="row">
-                <div class="col-12 col-sm-6">
-                  <div class="form-group">
-                    <label>Age</label>
-                    <input type="text" class="form-control" placeholder="Enter age">
-                  </div>
-                  <!-- /.form-group -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6">
-                  <div class="form-group">
-                    <label>Office No</label>
-                    <div class="select2-purple">
-                      <input type="text" class="form-control">
+                      <select class="form-control select2" name="company_name" style="width: 100%;">
+                        <option selected="selected">select</option>
+                        <?php
+                   while($sql=mysqli_fetch_array($query))
+                   {
+                     ?>
+
+                        <option value="<?php echo $sql['id'] ?>"> <?php echo $sql['company_name']; ?></option>
+                        <?php } ?>
+                      </select>
+
                     </div>
-                  </div>
-                  <!-- /.form-group -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-              <div class="row">
-                <div class="col-12 col-sm-6">
-                  <div class="form-group">
-                    <label>Address</label>
-                    <textarea class="form-control" placeholder="Enter  Address"></textarea>
-                  </div>
-                  <!-- /.form-group -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6">
-                  <div class="form-group">
-                    <label>Department</label>
-                    <div class="select2-purple">
-                      <input type="text" class="form-control" placeholder="Enter department">
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                      <label>Employee Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Enter Employee Name">
                     </div>
+                    <!-- /.form-group -->
                   </div>
-                  <!-- /.form-group -->
-                </div>
+                  <!-- /.col -->
 
-              </div>
-              <div class="row">
-                <div class="col-12 col-sm-6">
-                  <div class="form-group">
-                    <label>Pincode</label>
-                    <input type="number" class="form-control">
-                  </div>
-                  <!-- /.form-group -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6">
-                  <div class="form-group">
-                    <label>Mobile No</label>
-                    <div class="select2-purple">
-                      <input type="tel" class="form-control" placeholder="Enter mobile no">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Employee Id</label>
+                      <input type="text" class="form-control" id="employee_code" name="employee_code" required="">
                     </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" name="city" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
                   </div>
-                  <!-- /.form-group -->
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Age</label>
+                      <input type="text" class="form-control" name="age" placeholder="Enter age">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+
+                  <!-- /.col -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <div class="select2-purple">
+                        <select class="form-control">
+                          <option value="default selected">select</option>
+                          <option value="female">Female</option>
+                          <option value="male">Male</option>
+                        </select>
+
+
+                        </select>
+                      </div>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Address</label>
+                      <textarea class="form-control" name="address" placeholder="Enter  Address"></textarea>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Department</label>
+                      <?php 
+                  $query=mysqli_query($conn,"select * from department");
+                
+                  ?>
+
+
+                      <select class="form-control select2" name="category" style="width: 100%;">
+                        <option selected="selected">select</option>
+                        <?php
+                   while($sql=mysqli_fetch_array($query))
+                   {
+                     ?>
+
+
+                        ?>
+
+                        <option> <?php echo $sql['category']; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Pincode</label>
+                      <input type="number" name="pincode" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Mobile No</label>
+                      <div class="select2-purple">
+                        <input type="tel" class="form-control" name="contact_no" placeholder="Enter mobile no">
+                      </div>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+
                 </div>
 
-              </div>
 
-              <button type="submit" name="submit" class="btn btn-primary btn-icon-text " style="float: right;">
-                <i class="ti-file btn-icon-prepend"></i>
-                Add
-              </button>
-            </div>
-            <!-- /.card-body -->
+                <div class="row">
 
-          </div>
-          <!-- /.card -->
+                  <!-- /.col -->
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Office No</label>
+                      <div class="select2-purple">
+                        <input type="tel" class="form-control" name="office_no" placeholder="Enter mobile no">
+                      </div>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
 
-          <!-- SELECT2 EXAMPLE -->
-          <div class="card card-default">
+                </div>
 
-          </div>
-          <!-- /.card -->
 
-          <div class="card card-default">
 
+                <div class="form-group">
+
+                  <button type="submit" name="submit" class="btn btn-primary btn-icon-text " style="float: right;">
+                    <i class="ti-file btn-icon-prepend"></i>
+                    Add
+                  </button>
+
+                </div>
+
+            </form>
           </div>
         </div>
+        <!-- /.card-body -->
+
     </div>
     <!-- /.card -->
 
-    <?php include("footer.php")?>
+  </div>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+
+  <?php include("footer.php")?>
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <script>
+    $('.select2').select2();
+  </script>
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
@@ -222,152 +315,7 @@
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
   <!-- Page specific script -->
-  <script>
-    $(function () {
-      //Initialize Select2 Elements
-      $('.select2').select2()
 
-      //Initialize Select2 Elements
-      $('.select2bs4').select2({
-        theme: 'bootstrap4'
-      })
-
-      //Datemask dd/mm/yyyy
-      $('#datemask').inputmask('dd/mm/yyyy', {
-        'placeholder': 'dd/mm/yyyy'
-      })
-      //Datemask2 mm/dd/yyyy
-      $('#datemask2').inputmask('mm/dd/yyyy', {
-        'placeholder': 'mm/dd/yyyy'
-      })
-      //Money Euro
-      $('[data-mask]').inputmask()
-
-      //Date picker
-      $('#reservationdate').datetimepicker({
-        format: 'L'
-      });
-
-      //Date and time picker
-      $('#reservationdatetime').datetimepicker({
-        icons: {
-          time: 'far fa-clock'
-        }
-      });
-
-      //Date range picker
-      $('#reservation').daterangepicker()
-      //Date range picker with time picker
-      $('#reservationtime').daterangepicker({
-        timePicker: true,
-        timePickerIncrement: 30,
-        locale: {
-          format: 'MM/DD/YYYY hh:mm A'
-        }
-      })
-      //Date range as a button
-      $('#daterange-btn').daterangepicker({
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month')
-              .endOf('month')
-            ]
-          },
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment()
-        },
-        function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-        }
-      )
-
-      //Timepicker
-      $('#timepicker').datetimepicker({
-        format: 'LT'
-      })
-
-      //Bootstrap Duallistbox
-      $('.duallistbox').bootstrapDualListbox()
-
-      //Colorpicker
-      $('.my-colorpicker1').colorpicker()
-      //color picker with addon
-      $('.my-colorpicker2').colorpicker()
-
-      $('.my-colorpicker2').on('colorpickerChange', function (event) {
-        $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-      })
-
-      $("input[data-bootstrap-switch]").each(function () {
-        $(this).bootstrapSwitch('state', $(this).prop('checked'));
-      })
-
-    })
-    // BS-Stepper Init
-    document.addEventListener('DOMContentLoaded', function () {
-      window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-    })
-
-    // DropzoneJS Demo Code Start
-    Dropzone.autoDiscover = false
-
-    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-    var previewNode = document.querySelector("#template")
-    previewNode.id = ""
-    var previewTemplate = previewNode.parentNode.innerHTML
-    previewNode.parentNode.removeChild(previewNode)
-
-    var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-      url: "/target-url", // Set the url
-      thumbnailWidth: 80,
-      thumbnailHeight: 80,
-      parallelUploads: 20,
-      previewTemplate: previewTemplate,
-      autoQueue: false, // Make sure the files aren't queued until manually added
-      previewsContainer: "#previews", // Define the container to display the previews
-      clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-    })
-
-    myDropzone.on("addedfile", function (file) {
-      // Hookup the start button
-      file.previewElement.querySelector(".start").onclick = function () {
-        myDropzone.enqueueFile(file)
-      }
-    })
-
-    // Update the total progress bar
-    myDropzone.on("totaluploadprogress", function (progress) {
-      document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-    })
-
-    myDropzone.on("sending", function (file) {
-      // Show the total progress bar when upload starts
-      document.querySelector("#total-progress").style.opacity = "1"
-      // And disable the start button
-      file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-    })
-
-    // Hide the total progress bar when nothing's uploading anymore
-    myDropzone.on("queuecomplete", function (progress) {
-      document.querySelector("#total-progress").style.opacity = "0"
-    })
-
-    // Setup the buttons for all transfers
-    // The "add files" button doesn't need to be setup because the config
-    // `clickable` has already been specified.
-    document.querySelector("#actions .start").onclick = function () {
-      myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-    }
-    document.querySelector("#actions .cancel").onclick = function () {
-      myDropzone.removeAllFiles(true)
-    }
-    // DropzoneJS Demo Code End
-
-  </script>
 </body>
 
 </html>

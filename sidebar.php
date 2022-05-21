@@ -26,7 +26,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="#" class="nav-link btn active">
+          <a href="#" class="nav-link ">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Company
@@ -35,13 +35,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item ">
-              <a href="company.php" class="nav-link btn">
+              <a href="company.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Registration</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="companyinfo.php" class="btn nav-link">
+              <a href="companyinfo.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Company Info</p>
               </a>
@@ -50,7 +50,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link btn">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
               Employee
@@ -59,7 +59,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="employee.php" class=" btn nav-link">
+              <a href="employee.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Registration</p>
               </a>
