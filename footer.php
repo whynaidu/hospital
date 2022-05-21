@@ -5,3 +5,17 @@
     <b>Version</b> 1.0
   </div>
 </footer>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script>
+$(function(){
+  $(".nav-list-item").each(function(){
+    if($(this).prop("href") == window.location.href){
+      $(this).addClass("active");
+      $(this).parent("li").addClass("menu-open");
+      $(this).parent("li").parent("ul").css("display","block");
+      $(this).children().children().css("transform","rotate(-90deg)");
+
+    }
+  });
+});
+</script>

@@ -30,9 +30,10 @@ include("configure.php");
 
     <!-- /.navbar -->
     <!-- /.navbar -->
+    <?php include("sidebar.php")?>
 
     <!-- Main Sidebar Container -->
-    <?php include("sidebar.php")?>
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -98,24 +99,30 @@ include("configure.php");
                     </thead>
                     <tbody>
                       <?php     
-    $sql=mysqli_query($conn,"select employee.name  as nm,employee.age  as ag, employee.employee_code  as ecode, employee.gender as gen,company.company_name as cpn from employee inner join company on employee.emp_id=company.id");
+    $sql=mysqli_query($conn,"select employee.name,
+    employee.age, 
+    employee.employee_code,
+    employee.gender as gen,
+    company.company_name as cpn,
+    employee.department as dep
+    from employee inner join company on employee.emp_id=company.id");
     while($arr=mysqli_fetch_array($sql)){
     ?>
                       <tr>
                         <td>
-                          <?php echo $arr['nm'];?>
+                          <?php echo $arr['name'];?>
                         </td>
                         <td>
-                          <?php echo $arr['ecode'];?>
+                          <?php echo $arr['employee_code'];?>
                         </td>
                         <td>
-                          <?php echo $arr['ag'];?>
+                          <?php echo $arr['age'];?>
                         </td>
                         <td>
                           <?php echo $arr['gen'];?>
                         </td>
                         <td>
-                          <?php echo $arr['cat'];?>
+                          <?php echo $arr['dep'];?>
                         </td>
                         <td>
                           <?php echo $arr['cpn'];?>

@@ -13,8 +13,10 @@ include('configure.php');
         $gender = $_POST['gender'];
         $pincode = $_POST['pincode'];
         $contact_no = $_POST['contact_no'];
+        $category=$_POST['category'];
+        
         $id=$_POST['company_name'];
-        $sql="INSERT INTO `employee`(`name`,`age`,`office_no`,`address`, `pincode`,`contact_no`,`employee_code`,`gender`, `emp_id`) VALUES ('$name','$age','$office_no','$address','$pincode','$contact_no','$employee_code','$gender','$id')";
+        $sql="INSERT INTO `employee`(`name`,`age`,`office_no`,`address`, `pincode`,`contact_no`,`employee_code`,`gender`, `emp_id`, `department`) VALUES ('$name','$age','$office_no','$address','$pincode','$contact_no','$employee_code','$gender','$id','$category')";
         if (mysqli_query($conn, $sql)){
           echo "<script> alert ('New record has been added successfully !');</script>";
        } else {
@@ -80,6 +82,7 @@ include('configure.php');
 
     <!-- Main Sidebar Container -->
     <?php include("sidebar.php")?>
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -162,7 +165,7 @@ include('configure.php');
                     <div class="form-group">
                       <label>Gender</label>
                       <div class="select2-purple">
-                        <select class="form-control">
+                        <select class="form-control" name="gender">
                           <option value="default selected">select</option>
                           <option value="female">Female</option>
                           <option value="male">Male</option>
@@ -205,7 +208,7 @@ include('configure.php');
 
                         ?>
 
-                        <option> <?php echo $sql['category']; ?></option>
+                        <option value="<?php echo $sql['category']; ?>"> <?php echo $sql['category']; ?></option>
                         <?php } ?>
                       </select>
                     </div>
@@ -269,17 +272,16 @@ include('configure.php');
     </div>
     <!-- /.card -->
 
-  </div>
 
 
-  <?php include("footer.php")?>
 
+    <?php include("footer.php")?>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
