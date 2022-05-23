@@ -66,7 +66,7 @@
             </li>
             <li class="nav-item">
               <a href="employeeinfo.php" class="nav-link nav-list-item">
-              <i class="fa fa-info" aria-hidden="true"></i>
+              <i class="far fa-circle nav-icon"></i>
                 <p>Employee Info</p>
               </a>
             </li>
@@ -89,7 +89,7 @@
             </li>
             <li class="nav-item">
               <a href="contractorinfo.php" class="nav-link nav-list-item">
-              <i class="fa fa-info" aria-hidden="true"></i>
+              <i class="far fa-circle nav-icon"></i>
                 <p>Contractor Info</p>
               </a>
             </li>
@@ -137,7 +137,7 @@
         </li>
         <li class="nav-item">
           <a href="summaryreport.php" class="nav-link nav-list-item">
-            <i class="nav-icon far fa-calendar-alt"></i>
+          <i class="fa fa-handshake-o" aria-hidden="true"></i>
             <p>
               Summary Reports
               <span class="badge badge-info right"></span>
