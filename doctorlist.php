@@ -1,3 +1,6 @@
+<?php  
+include("configure.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,31 +109,15 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr role="row" class="odd">
-                            <td>Mawe Nzuri</td>
-                            <td>Testing &amp; Deployment</td>
-                            <td>SALARY</td>
-                            <td>SALARY</td>
-                            <td>
-                              <div class="btn-group">
-                                <a href="#" data-toggle="modal" data-target="#edit_expense_category_modal"
-                                  data-tt="tooltip" title="" class="btn btn-info btn-xs edit_expense_category_modal"
-                                  data-expense_category_id="Mw==" data-original-title="Edit expense category">
-                                  <i class="fas fa-edit"></i> Edit
-                                </a>
-                                <a href="#" data-toggle="modal" data-target="#delete_expense_category_modal"
-                                  data-tt="tooltip" title="" class="btn btn-danger btn-xs delete_expense_category_modal"
-                                  data-expense_category_id="3" data-original-title="Delete expense category">
-                                  <i class="fas fa-trash"></i> Delete
-                                </a>
-                              </div>
-                            </td>
-                          </tr>
+                        <?php     
+    $sql=mysqli_query($conn,"select doctor.doctor_name,degree,specialist,upload_signature from doctor");
+    while($arr=mysqli_fetch_array($sql)){
+    ?>
                           <tr role="row" class="even">
-                            <td>Employee Benefits</td>
-                            <td>Employee Benefits</td>
-                            <td>SALARY</td>
-                            <td>SALARY</td>
+                            <td><?php echo $arr['doctor_name'];?></td>
+                            <td><?php echo $arr['degree'];?></td>
+                            <td><?php echo $arr['specialist'];?></td>
+                            <td><?php echo $arr['upload_signature'];?></td>
                             <td>
                               <div class="btn-group">
 
@@ -138,7 +125,7 @@
                                   data-tt="tooltip" title="" class="btn btn-info btn-xs edit_expense_category_modal"
                                   data-expense_category_id="MQ==" data-original-title="Edit expense category">
                                   <i class="fas fa-edit"></i> Edit
-                                </a>
+                                </a>&nbsp;&nbsp;&nbsp;
                                 <a href="#" data-toggle="modal" data-target="#delete_expense_category_modal"
                                   data-tt="tooltip" title="" class="btn btn-danger btn-xs delete_expense_category_modal"
                                   data-expense_category_id="1" data-original-title="Delete expense category">
@@ -147,6 +134,7 @@
                               </div>
                             </td>
                           </tr>
+                          <?php }  ?>
                         </tbody>
                       </table>
                       <div id="example_processing" class="dataTables_processing card" style="display: none;">
