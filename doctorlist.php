@@ -40,7 +40,7 @@
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Setting</a></li>
-                <li class="breadcrumb-item active">Tax&nbsp;</li>
+                <li class="breadcrumb-item active">Doctor List &nbsp;</li>
               </ol>
             </div>
           </div>
@@ -74,7 +74,9 @@
                             <option value="25">25</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
-                          </select> entries</label>
+                            &nbsp;
+                            &nbsp;
+                          </select> Entries</label>
                       </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
@@ -158,7 +160,7 @@
                     </div>
                     <div class="col-sm-12 col-md-7">
                       <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                        <ul class="pagination">
+                        <ul class="pagination" style="padding-left: 530px">
                           <li class="paginate_button page-item previous disabled" id="example_previous">
                             <a href="#" aria-controls="example" data-dt-idx="0" tabindex="0"
                               class="page-link">Previous</a>
