@@ -136,14 +136,12 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="summaryreport.php" class="nav-link nav-list-item">
-          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-            <p>
-              Summary Reports
-              <span class="badge badge-info right"></span>
-            </p>
-          </a>
-        </li>
+              <a href="summaryreport.php" class="nav-link nav-list-item">
+              <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                <p> Summary Reports</p>
+                <span class="badge badge-info right"></span>
+              </a>
+            </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
           <i class="fa fa-headphones" aria-hidden="true"></i>
