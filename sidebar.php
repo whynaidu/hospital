@@ -146,7 +146,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
-          <i class="fa fa-superpowers" aria-hidden="true"></i>
+          <i class="fa fa-headphones" aria-hidden="true"></i>
 
             <p>
               Support
