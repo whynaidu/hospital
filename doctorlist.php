@@ -78,8 +78,8 @@
                       </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                      <div id="example_filter" class="dataTables_filter">
-                        <label>Search:<input type="search" class="form-control form-control-sm" placeholder=""
+                      <div id="example_filter" class="dataTables_filter" style="text-align:end">
+                        <label style="text-align:left">Search:<input type="search" class="form-control form-control-sm" placeholder=""
                             aria-controls="example">
                         </label>
                       </div>
