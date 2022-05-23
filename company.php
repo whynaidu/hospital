@@ -19,7 +19,6 @@ if(isset($_POST['submi_t']))
        }
       // mysqli_close($conn);
     }
-    echo "<script>alert('india');</script>";
   ?>
 <html lang="en">
 
