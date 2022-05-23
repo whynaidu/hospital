@@ -27,10 +27,10 @@
                with font-awesome or any other icon font library -->
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item" >
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+          <i class="fa fa-building" aria-hidden="true"></i>
             <p>
               Company
-              <i class="fa fa-building" aria-hidden="true"></i>
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
