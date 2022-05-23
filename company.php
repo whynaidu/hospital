@@ -1,6 +1,5 @@
 <?php
 include('configure.php');
-
 if(isset($_POST['submi_t']))
     {
         $company_name= $_POST['company_name'];
@@ -20,6 +19,7 @@ if(isset($_POST['submi_t']))
        }
       // mysqli_close($conn);
     }
+    echo "<script>alert('hello');</script>";
   ?>
 <html lang="en">
 
