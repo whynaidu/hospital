@@ -77,7 +77,7 @@
             <i class="nav-icon fas fa-tree"></i>
             <p>
               Contractor
-              <i class="fa fa-id-card-o" aria-hidden="true"></i>
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
