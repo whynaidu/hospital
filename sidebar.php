@@ -42,7 +42,7 @@
             </li>
             <li class="nav-item">
               <a href="companyinfo.php" class="nav-link nav-list-item">
-                <i class="far fa-circle nav-icon"></i>
+              <i class="fa fa-info" aria-hidden="true"></i>
                 <p>Company Info</p>
               </a>
             </li>
@@ -51,7 +51,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
-            <i class="nav-icon fas fa-chart-pie"></i>
+          <i class="fa fa-id-badge" aria-hidden="true"></i>
             <p>
               Employee
               <i class="right fas fa-angle-left"></i>
@@ -66,7 +66,7 @@
             </li>
             <li class="nav-item">
               <a href="employeeinfo.php" class="nav-link nav-list-item">
-                <i class="far fa-circle nav-icon"></i>
+              <i class="fa fa-info" aria-hidden="true"></i>
                 <p>Employee Info</p>
               </a>
             </li>
@@ -77,7 +77,7 @@
             <i class="nav-icon fas fa-tree"></i>
             <p>
               Contractor
-              <i class="fas fa-angle-left right"></i>
+              <i class="fa fa-id-card-o" aria-hidden="true"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -89,7 +89,7 @@
             </li>
             <li class="nav-item">
               <a href="contractorinfo.php" class="nav-link nav-list-item">
-                <i class="far fa-circle nav-icon"></i>
+              <i class="fa fa-info" aria-hidden="true"></i>
                 <p>Contractor Info</p>
               </a>
             </li>
@@ -97,7 +97,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
-            <i class="nav-icon fas fa-edit"></i>
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
             <p>
               Medical
               <i class="fas fa-angle-left right"></i>
@@ -106,7 +106,7 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="medicalexaminationform.php" class="nav-link nav-list-item">
-                <i class="far fa-circle nav-icon"></i>
+              <i class="fa fa-minus-square-o" aria-hidden="true"></i>
                 <p>Examination Forms</p>
               </a>
             </li>
@@ -120,7 +120,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
-            <i class="nav-icon fas fa-table"></i>
+          <i class="fa fa-minus-square" aria-hidden="true"></i>
             <p>
               Medical Form 7
               <i class="fas fa-angle-left right"></i>
