@@ -30,7 +30,7 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Company
-              <i class="right fas fa-angle-left"></i>
+              <i class="fa fa-building" aria-hidden="true"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
