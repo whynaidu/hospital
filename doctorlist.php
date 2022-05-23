@@ -56,7 +56,7 @@
               <div class="card-header">
                 <h3 class="card-title">DOCTOR LIST</h3>
                 <div class="card-tools">
-                  <button type="button" class="btn btn-block btn-primary btn-sm add_expense_category_modal"
+                  <button type="button" onclick="location.href='adddoctor.php'" class="btn btn-block btn-primary btn-sm add_expense_category_modal"
                     data-toggle="modal" data-target="#add_expense_category_modal" data-tt="tooltip" title=""
                     data-original-title="Click here to Add Expense Category">Add Doctor</button>
                 </div>
