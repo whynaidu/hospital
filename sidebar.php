@@ -74,7 +74,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
-            <i class="nav-icon fas fa-tree"></i>
+          <i class="fa fa-industry" aria-hidden="true"></i>
             <p>
               Contractor
               <i class="right fas fa-angle-left"></i>
@@ -140,13 +140,14 @@
             <i class="nav-icon far fa-calendar-alt"></i>
             <p>
               Summary Reports
-              <span class="badge badge-info right">2</span>
+              <span class="badge badge-info right"></span>
             </p>
           </a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
-            <i class="nav-icon far fa-envelope"></i>
+          <i class="fa fa-superpowers" aria-hidden="true"></i>
+
             <p>
               Support
               <i class="fas fa-angle-left right"></i>
@@ -169,7 +170,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link nav-list-item">
-            <i class="nav-icon fas fa-user-cog "></i>
+          <i class="fa fa-cog" aria-hidden="true"></i>
             <p>
               Settings
               <i class="fas fa-angle-left right"></i>
