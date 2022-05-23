@@ -1,3 +1,6 @@
+<?php  
+include("configure.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +26,6 @@
   <div class="wrapper">
     <!-- Navbar -->
     <?php include("header.php")?>
-
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -55,7 +57,7 @@
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>#</th>
+                        <th>client code</th>
                         <th>Ticket No</th>
                         <th>Subject</th>
                         <th>Discription</th>
@@ -64,45 +66,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Internet
-                          Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Internet
-                          Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5</td>
-                        <td>C</td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Internet
-                          Explorer 5.5
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5.5</td>
-                        <td>A</td>
-                        <td></td>
-                      </tr>
+                      <?php     
+    $sql=mysqli_query($conn,"select complaint.ticket_no  as tn,complaint.status  as st, complaint.subject as sb, complaint.client_code as cc, complaint.description as dt,medical.advice as a from complaint inner join medical on complaint.emp_id=medical.emp_id");
+    while($arr=mysqli_fetch_array($sql)){
+    ?>
 
                       <tr>
-                        <td>4</td>
-                        <td>All others</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>U</td>
-                        <td></td>
+                        <td><?php echo $arr['cc'];?></td>
+                        <td><?php echo $arr['tn'];?></td>
+                        <td><?php echo $arr['sb'];?></td>
+                        <td> <?php echo $arr['dt'];?></td>
+                        <td><?php echo $arr['st'];?></td>
+                        <td><?php echo $arr['a'];?></td>
                       </tr>
+
+                      <?php }  ?>
                     </tbody>
 
                   </table>
@@ -170,7 +148,6 @@
         "responsive": true,
       });
     });
-
   </script>
 </body>
 

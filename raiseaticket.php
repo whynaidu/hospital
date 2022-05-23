@@ -1,3 +1,20 @@
+<?php  
+include("configure.php");
+if(isset($_POST['submit']))
+    {
+        $client_code = $_POST['client_code'];
+        $subject = $_POST['subject'];
+        $email=$_POST['email'];
+        $description = $_POST['description'];
+        $sql= "INSERT INTO `complaint`(`client_code`,`subject`,`description`) VALUES ('$client_code','$subject','$description')";
+        if (mysqli_query($conn, $sql)){
+          echo "<script> alert ('New record has been added successfully !');</script>";
+       } else {
+          echo "<script> alert ('connection failed !');</script>";
+       }
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,12 +36,10 @@
   <div class="wrapper">
     <!-- Navbar -->
     <?php include("header.php")?>
-
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <?php include("sidebar.php")?>
-
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -48,35 +63,53 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form id="quickForm">
+                <form id="quickForm" method="post">
                   <div class="card-body">
-                    <div class="form-group">
-                      <label for="exampleInputext">Client Code</label>
-                      <input type="text" name="c-code" class="form-control" id="exampleInputtext"
-                        placeholder="Enter Client Code">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                        placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Subject</label>
-                      <input type="text" name="s-code" class="form-control" id="exampleInputtext"
-                        placeholder="Enter Subject">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Discription</label>
-                      <input type="text" name="d-code" class="form-control" id="exampleInputtext"
-                        placeholder="Enter Discription">
-                    </div>
 
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-primary">Cancel</button>
-                  </div>
+                    <?php 
+                 $sql=mysqli_query($conn,"select id from complaint order by id") or die(mysqli_error($conn));
+                 $count=mysqli_num_rows($sql);
+                
+                $c=$count+1;
+                if(empty($c)){
+                  $number="0001";
+                }
+                else {
+                  $lastid=str_pad($c+ 0, 4, 0, STR_PAD_LEFT);
+                  $number=$lastid;
+                }
+                 ?>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Client Code</label>
+
+                          <input type="text" class="form-control" placeholder="Enter Client Code" name="client_code"
+                            id="exampledno" value="<?php echo $number; ?>" required="" readonly>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                            placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Subject</label>
+                          <input type="text" name="subject" class="form-control" id="exampleInputtext"
+                            placeholder="Enter Subject">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Description</label>
+                          <input type="text" name="description" class="form-control" id="exampleInputtext"
+                            placeholder="Enter Discription">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                      <button type="button" class="btn btn-primary">Cancel</button>
+                    </div>
                 </form>
               </div>
               <!-- /.card -->
@@ -116,53 +149,7 @@
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
   <!-- Page specific script -->
-  <script>
-    $(function () {
-      $.validator.setDefaults({
-        submitHandler: function () {
-          alert("Form successful submitted!");
-        }
-      });
-      $('#quickForm').validate({
-        rules: {
-          email: {
-            required: true,
-            email: true,
-          },
-          password: {
-            required: true,
-            minlength: 5
-          },
-          terms: {
-            required: true
-          },
-        },
-        messages: {
-          email: {
-            required: "Please enter a email address",
-            email: "Please enter a valid email address"
-          },
-          password: {
-            required: "Please provide a password",
-            minlength: "Your password must be at least 5 characters long"
-          },
-          terms: "Please accept our terms"
-        },
-        errorElement: 'span',
-        errorPlacement: function (error, element) {
-          error.addClass('invalid-feedback');
-          element.closest('.form-group').append(error);
-        },
-        highlight: function (element, errorClass, validClass) {
-          $(element).addClass('is-invalid');
-        },
-        unhighlight: function (element, errorClass, validClass) {
-          $(element).removeClass('is-invalid');
-        }
-      });
-    });
 
-  </script>
 </body>
 
 </html>
