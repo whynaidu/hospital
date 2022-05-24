@@ -82,7 +82,8 @@
                             Bank Detail </label>
                           <div class="col-sm-6">
                             <textarea class="form-control form-control-sm" rows="5" name="bank_detail" id="bank_detail"
-                              placeholder="Bank Detail">Bank Name : Canara Bank
+                              placeholder="Bank Detail">
+                                            Bank Name : Canara Bank
                                             Account Number : 37481751171
                                             IFSC Code : SBIN0005683
                                             Branch Name : parula</textarea>
