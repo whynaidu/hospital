@@ -97,8 +97,8 @@
                           <label for="inputPassword3" class="col-sm-2 col-form-label">
                             Terms &amp; Condition </label>
 
-                          <div class="col-sm-6">
-                            <textarea class="form-control form-control-sm" rows="5" name="terms_and_condition"
+                          <div class="col-sm-9">
+                            <textarea class="form-control form-control-sm" rows="6" name="terms_and_condition"
                               id="terms_and_condition" placeholder="Terms &amp; Condition">1. Subject to navi mumbai Jurisdiction
                           2. Our responsibility ceases as soon as the goods leave our premises.
                           3. Goods once sold will not be taken back.
