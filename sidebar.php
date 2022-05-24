@@ -42,7 +42,7 @@
             </li>
             <li class="nav-item">
               <a href="companyinfo.php" class="nav-link nav-list-item">
-              <i class="fa fa-info" aria-hidden="true"></i>
+              <i class="far fa-circle nav-icon"></i>
                 <p>Company Info</p>
               </a>
             </li>
