@@ -137,7 +137,7 @@
         </li>
         <li class="nav-item">
               <a href="summaryreport.php" class="nav-link nav-list-item">
-              <i class="fa fa-handshake-o" aria-hidden="true"></i>
+              <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 <p> Summary Reports</p>
                 <span class="badge badge-info right"></span>
               </a>
