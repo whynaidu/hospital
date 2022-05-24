@@ -8,6 +8,14 @@
         $degree=$_POST['degree'];
         $specialist=$_POST['specialist'];
         $upload_signature=$_POST['upload_signature'];
+
+        if(isset($_GET['delid'])){
+          $id=mysqli_real_escape_string($conn,$_GET['delid']);
+          $sql=mysqli_query($conn,"delete from service where id='$id'");
+          if($sql=1){
+            header("location:doctorlist.php");
+          }
+        }
         
        
     
