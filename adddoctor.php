@@ -8,9 +8,6 @@
         $degree=$_POST['degree'];
         $specialist=$_POST['specialist'];
         $upload_signature=$_POST['upload_signature'];
-        
-       
-    
 
       $sql=mysqli_query($conn,"INSERT INTO `doctor`(`doctor_name`,`degree`, `specialist`, `upload_signature`) VALUES 
   ('$doctor_name','$degree','$specialist','$upload_signature')");
