@@ -1,5 +1,15 @@
 <?php  
 include("configure.php");
+
+
+if(isset($_GET['delid'])){
+  $id=mysqli_real_escape_string($conn,$_GET['delid']);
+  $sql=mysqli_query($conn,"delete from doctor where id='$id'");
+  if($sql=1){
+    header("location:doctorlist.php");
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,7 +121,7 @@ include("configure.php");
                         </thead>
                         <tbody>
                           <?php     
-    $sql=mysqli_query($conn,"select doctor.doctor_name,degree,specialist,upload_signature from doctor");
+    $sql=mysqli_query($conn,"select * from doctor");
     while($arr=mysqli_fetch_array($sql)){
     ?>
                           <tr role="row" class="even">
@@ -127,10 +137,8 @@ include("configure.php");
                                   data-expense_category_id="MQ==" data-original-title="Edit expense category">
                                   <i class="fas fa-edit"></i> Edit
                                 </a>&nbsp;&nbsp;&nbsp;
-                                <a href="doctorlist.php?delid=<?php echo $row['id']; ?>" onclick="return checkDelete()"
-                                  data-toggle="modal" data-target="#delete_expense_category_modal" data-tt="tooltip"
-                                   class="btn btn-danger btn-xs delete_expense_category_modal"
-                                  data-expense_category_id="1" data-original-title="Delete expense category">
+                                <a href="doctorlist.php?delid=<?php echo $arr['id']; ?>"
+                                   class="btn btn-danger btn-xs delete_expense_category_modal">
                                   <i class="fas fa-trash"></i> Delete
                                 </a>
                               </div>

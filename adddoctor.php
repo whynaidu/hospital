@@ -9,17 +9,6 @@
         $specialist=$_POST['specialist'];
         $upload_signature=$_POST['upload_signature'];
 
-        if(isset($_GET['delid'])){
-          $id=mysqli_real_escape_string($conn,$_GET['delid']);
-          $sql=mysqli_query($conn,"delete from service where id='$id'");
-          if($sql=1){
-            header("location:doctorlist.php");
-          }
-        }
-        
-       
-    
-
       $sql=mysqli_query($conn,"INSERT INTO `doctor`(`doctor_name`,`degree`, `specialist`, `upload_signature`) VALUES 
   ('$doctor_name','$degree','$specialist','$upload_signature')");
 
