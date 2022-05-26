@@ -1,3 +1,26 @@
+<?php
+include("configure.php");
+session_start();
+
+if(isset($_POST['emailSettingSubmit'])){
+    $protocol=$_POST['protocol'];
+    $encryption=$_POST['encryption'];
+    $host=mysqli_real_escape_string($conn,$_POST['host']);
+    $port=$_POST['port'];
+    $email=$_POST['email'];
+    $username=$_POST['username'];
+    $password=mysqli_real_escape_string($conn,$_POST['password']);
+
+    $sql=mysqli_query($conn,"update email_configuration set protocol='$protocol',encryption='$encryption',host='$host',port='$port',email='$email',username='$username',password='$password'");
+    if($sql){
+        echo "<script>alert('Email Configuration Updated Successfully');</script>";
+    }
+    else{
+        echo "<script>alert('Email Configuration Not Updated');</script>";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,92 +71,83 @@
       </section>
 
       <!-- Main content -->
+      <?php
+
+                  $sql=mysqli_query($conn,"select * from email_configuration");
+                  while($arr=mysqli_fetch_assoc($sql)){
+                  ?>
       <section class="content">
         <div class="row">
           <div class="col-md-12">
-            <form class="form-horizontal" name="emailSetupForm" id="emailSetupForm" method="post"
-              enctype="multipart/form-data">
-              <div class="card card-info">
-                <div class="card-header">
-                  <h3 class="card-title">Email setup</h3>
-                </div>
-                <div class="card-body">
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">
-                      Protocol <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-sm-4">
-                      <input type="text" name="protocol" value="smtp"
-                        class="form-control form-control-sm field_validation" id="protocol" placeholder="Protocol">
-                      <span id="err_protocol" class="error invalid-feedback"></span>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Encryption<span
-                        class="text-danger">*</span></label>
-                    <div class="col-sm-4">
-                      <input type="text" name="encryption" value="SSL"
-                        class="form-control form-control-sm field_validation" id="encryption" placeholder="Encryption">
-                      <span id="err_encryption" class="error invalid-feedback"></span>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Host<span
-                        class="text-danger">*</span></label>
-                    <div class="col-sm-4">
-                      <input type="text" name="host" value="smtp.hostinger.com"
-                        class="form-control form-control-sm field_validation" id="host" placeholder="Host">
-                      <span id="err_host" class="error invalid-feedback"></span>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Port<span
-                        class="text-danger">*</span></label>
-                    <div class="col-sm-4">
-                      <input type="text" name="port" value="25" class="form-control form-control-sm field_validation"
-                        id="port" placeholder="Port">
-                      <span id="err_port" class="error invalid-feedback"></span>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Email<span
-                        class="text-danger">*</span></label>
-                    <div class="col-sm-4">
-                      <input type="email" name="email" value="info@tectignis.in"
-                        class="form-control form-control-sm field_validation" id="email" placeholder="Email">
-                      <span id="err_email" class="error invalid-feedback"></span>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Username<span
-                        class="text-danger">*</span></label>
-                    <div class="col-sm-4">
-                      <input type="text" name="username" value="admin"
-                        class="form-control form-control-sm field_validation" id="username" placeholder="Username">
-                      <span id="err_username" class="error invalid-feedback"></span>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password<span
-                        class="text-danger">*</span></label>
-                    <div class="col-sm-4">
-                      <input type="password" name="password" value="12345678"
-                        class="form-control form-control-sm field_validation" id="password" placeholder="Password">
-                      <span id="err_password" class="error invalid-feedback"></span>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="card-footer">
-                  <input type="hidden" name="csrf_zivaan_pro" value="480811adcf9fcf5e1a90f4c2ae1561dd">
-                  <button type="submit" id="emailSettingSubmit" name="emailSettingSubmit" class="btn btn-info"
-                    data-tt="tooltip" title="" data-original-title="Click here to Save">Save</button>
-                </div>
-              </div>
-            </form>
+          <form class="form-horizontal" name="emailSetupForm" id="emailSetupForm" method="post" enctype="multipart/form-data">
+                            <div class="card card-info">
+                                <div class="card-header">
+                                <h3 class="card-title mt-4">Email setup</h3>
+                                </div>
+                                <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">
+                                    Protocol                      <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-sm-4">
+                                    <input type="text" name="protocol" value="<?php echo $arr['protocol'] ?>" class="form-control form-control-sm field_validation" id="protocol" placeholder="Protocol">
+                                    <span id="err_protocol" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Encryption<span class="text-danger">*</span></label>
+                                    <div class="col-sm-4">
+                                    <input type="text" name="encryption" value="<?php echo $arr['encryption'] ?>" class="form-control form-control-sm field_validation" id="encryption" placeholder="Encryption">
+                                    <span id="err_encryption" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Host<span class="text-danger">*</span></label>
+                                    <div class="col-sm-4">
+                                    <input type="text" name="host" value="<?php echo $arr['host'] ?>" class="form-control form-control-sm field_validation" id="host" placeholder="Host">
+                                    <span id="err_host" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Port<span class="text-danger">*</span></label>
+                                    <div class="col-sm-4">
+                                    <input type="text" name="port" value="<?php echo $arr['port'] ?>" class="form-control form-control-sm field_validation" id="port" placeholder="Port">
+                                    <span id="err_port" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Email<span class="text-danger">*</span></label>
+                                    <div class="col-sm-4">
+                                    <input type="email" name="email" value="<?php echo $arr['email'] ?>" class="form-control form-control-sm field_validation" id="email" placeholder="Email">
+                                    <span id="err_email" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Username<span class="text-danger">*</span></label>
+                                    <div class="col-sm-4">
+                                    <input type="text" name="username" value="<?php echo $arr['username'] ?>" class="form-control form-control-sm field_validation" id="username" placeholder="Username">
+                                    <span id="err_username" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password<span class="text-danger">*</span></label>
+                                    <div class="col-sm-4">
+                                    <input type="password" name="password" value="<?php echo $arr['password'] ?>" class="form-control form-control-sm field_validation" id="password" placeholder="Password">
+                                    <span id="err_password" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                                
+                                </div>
+                                <div class="card-footer">
+                                <input type="hidden" name="csrf_zivaan_pro" value="0d0916ebc5a1ddc9c6a32ef256602c6d">
+                                <button type="submit" id="emailSettingSubmit" name="emailSettingSubmit" class="btn btn-primary" data-tt="tooltip" title="Click here to Save">Save</button>
+                                </div>
+                            </div>
+                            </form>
           </div>
         </div>
       </section>
+      <?php } ?>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

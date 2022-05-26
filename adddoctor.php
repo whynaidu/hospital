@@ -2,21 +2,30 @@
     session_start();
 
     include("configure.php");
-
+$msg="";
     if(isset($_POST['submit'])){
-        $doctor_name=$_POST['doctor_name'];  
-        $degree=$_POST['degree'];
-        $specialist=$_POST['specialist'];
-        $upload_signature=$_POST['upload_signature'];
-        
-       
-    
+      $doctor_name=$_POST['doctor_name'];  
+      $degree=$_POST['degree'];
+      $specialist=$_POST['specialist'];
 
-      $sql=mysqli_query($conn,"INSERT INTO `doctor`(`doctor_name`,`degree`, `specialist`, `upload_signature`) VALUES 
-  ('$doctor_name','$degree','$specialist','$upload_signature')");
+      $upload_signature=$_FILES['upload_signature']['name'];
+      $extension=substr( $upload_signature,strlen( $upload_signature)-4,strlen( $upload_signature));
+      $all_extension = array(".jpg","jpeg",".png","gif");
+      if(!in_array($extension,$all_extension)){
+        $msg="Invalid format. Only jpg / jpeg/ png /gif format allowed";
+      } 
+          else{
+            $imgload=md5($file).$extension;
+      $dnk=$_FILES['upload_signature']['tmp_name'];
+      $loc="dist/img".$imgload;
+      move_uploaded_file($dnk,$loc);
+
+    $sql=mysqli_query($conn,"INSERT INTO `doctor`(`doctor_name`,`degree`, `specialist`, `upload_signature`) VALUES 
+('$doctor_name','$degree','$specialist','$imgload')");
+
+  }
 
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -73,16 +82,9 @@
             </div>
             <div class="card-body">
 
-            <form class="form-sample" method="POST">
+            <form class="form-sample" method="POST" enctype="multipart/form-data">
             <div class="form-group">
 
-
-
-              
-
-
-
-                
               <div class="form-group">
                 <label for="inputName">Doctor Name</label>
                 <input type="text" id="inputName" name="doctor_name"  class="form-control">
@@ -104,12 +106,13 @@
                     <label for="exampleInputFile">Upload signature</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="upload_signature" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <input type="file" class="custom-file-input" name="upload_signature" id="exampleFile">
+                        <input class="custom-file-label" id="uploadFile" value="signature" for="exampleInputFile">
                       </div>
-                      <div class="input-group-append">
+                      <span><?php echo $msg; ?></span>
+                      <!-- <div class="input-group-append">
                         <span class="input-group-text">Upload</span>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div class="row">
@@ -128,6 +131,11 @@
                         </form>
       </div>
     </section>
+    <script>
+      document.getElementById("exampleFile").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};
+    </script>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

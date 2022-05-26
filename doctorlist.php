@@ -126,6 +126,8 @@ include("configure.php");
                                   data-expense_category_id="MQ==" data-original-title="Edit expense category">
                                   <i class="fas fa-edit"></i> Edit
                                 </a>&nbsp;&nbsp;&nbsp;
+
+                                
                                 <a href="#" data-toggle="modal" data-target="#delete_expense_category_modal"
                                   data-tt="tooltip" title="" class="btn btn-danger btn-xs delete_expense_category_modal"
                                   data-expense_category_id="1" data-original-title="Delete expense category">
@@ -146,9 +148,9 @@ include("configure.php");
                       <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 2 of
                         2 entries</div>
                     </div>
-                    <div class="col-sm-12 col-md-7">
+                    <div class="col-sm-12 col-md-6">
                       <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                        <ul class="pagination" style="padding-left: 530px">
+                        <ul class="pagination" style="padding-left:440px">
                           <li class="paginate_button page-item previous disabled" id="example_previous">
                             <a href="#" aria-controls="example" data-dt-idx="0" tabindex="0"
                               class="page-link">Previous</a>
