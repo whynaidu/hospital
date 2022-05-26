@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     include("configure.php");
 $msg="";
     if(isset($_POST['submit'])){
