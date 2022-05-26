@@ -1,5 +1,15 @@
 <?php  
 include("configure.php");
+
+
+if(isset($_GET['delid'])){
+  $id=mysqli_real_escape_string($conn,$_GET['delid']);
+  $sql=mysqli_query($conn,"delete from doctor where id='$id'");
+  if($sql=1){
+    header("location:doctorlist.php");
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +69,9 @@ include("configure.php");
               <div class="card-header">
                 <h3 class="card-title">DOCTOR LIST</h3>
                 <div class="card-tools">
-                  <button type="button" onclick="location.href='adddoctor.php'" class="btn btn-block btn-primary btn-sm add_expense_category_modal"
-                    data-toggle="modal" data-target="#add_expense_category_modal" data-tt="tooltip" title=""
+                  <button type="button" onclick="location.href='adddoctor.php'"
+                    class="btn btn-block btn-primary btn-sm add_expense_category_modal" data-toggle="modal"
+                    data-target="#add_expense_category_modal" data-tt="tooltip" title=""
                     data-original-title="Click here to Add Expense Category">Add Doctor</button>
                 </div>
                 <!-- /.card-tools -->
@@ -84,8 +95,8 @@ include("configure.php");
                     </div>
                     <div class="col-sm-12 col-md-6">
                       <div id="example_filter" class="dataTables_filter" style="text-align:end">
-                        <label style="text-align:left">Search:<input type="search" class="form-control form-control-sm" placeholder=""
-                            aria-controls="example">
+                        <label style="text-align:left">Search:<input type="search" class="form-control form-control-sm"
+                            placeholder="" aria-controls="example">
                         </label>
                       </div>
                     </div>
@@ -109,8 +120,8 @@ include("configure.php");
                           </tr>
                         </thead>
                         <tbody>
-                        <?php     
-    $sql=mysqli_query($conn,"select doctor.doctor_name,degree,specialist,upload_signature from doctor");
+                          <?php     
+    $sql=mysqli_query($conn,"select * from doctor");
     while($arr=mysqli_fetch_array($sql)){
     ?>
                           <tr role="row" class="even">
@@ -126,11 +137,8 @@ include("configure.php");
                                   data-expense_category_id="MQ==" data-original-title="Edit expense category">
                                   <i class="fas fa-edit"></i> Edit
                                 </a>&nbsp;&nbsp;&nbsp;
-
-                                
-                                <a href="#" data-toggle="modal" data-target="#delete_expense_category_modal"
-                                  data-tt="tooltip" title="" class="btn btn-danger btn-xs delete_expense_category_modal"
-                                  data-expense_category_id="1" data-original-title="Delete expense category">
+                                <a href="doctorlist.php?delid=<?php echo $arr['id']; ?>"
+                                   class="btn btn-danger btn-xs delete_expense_category_modal">
                                   <i class="fas fa-trash"></i> Delete
                                 </a>
                               </div>
@@ -187,6 +195,13 @@ include("configure.php");
   <!-- ./wrapper -->
 
   <!-- jQuery -->
+
+  <script language="JavaScript" type="text/javascript">
+    function checkDelete() {
+      return confirm('Are you sure you want to delete this userid?');
+    }
+  </script>
+
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -4,9 +4,10 @@
     include("configure.php");
 $msg="";
     if(isset($_POST['submit'])){
-      $doctor_name=$_POST['doctor_name'];  
-      $degree=$_POST['degree'];
-      $specialist=$_POST['specialist'];
+        $doctor_name=$_POST['doctor_name'];  
+        $degree=$_POST['degree'];
+        $specialist=$_POST['specialist'];
+        $upload_signature=$_POST['upload_signature'];
 
       $upload_signature=$_FILES['upload_signature']['name'];
       $extension=substr( $upload_signature,strlen( $upload_signature)-4,strlen( $upload_signature));
