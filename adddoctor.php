@@ -15,9 +15,9 @@ $msg="";
         $msg="Invalid format. Only jpg / jpeg/ png /gif format allowed";
       } 
           else{
-            $imgload=md5($file).$extension;
+            $imgload=md5($upload_signature).$extension;
       $dnk=$_FILES['upload_signature']['tmp_name'];
-      $loc="dist/img".$imgload;
+      $loc="dist/img/signature/".$imgload;
       move_uploaded_file($dnk,$loc);
 
     $sql=mysqli_query($conn,"INSERT INTO `doctor`(`doctor_name`,`degree`, `specialist`, `upload_signature`) VALUES 
