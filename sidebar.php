@@ -20,7 +20,7 @@
                with font-awesome or any other icon font library -->
                <li class="nav-item">
           <a href="#" class="nav-link nav-list-item" >
-          <i class="fa fa-building" aria-hidden="true"></i>
+<i class="fa-solid fa-hospital"></i>
             <p>
               Hospital Registration
               <i class="right fas fa-angle-left"></i>
