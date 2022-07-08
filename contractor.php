@@ -12,7 +12,8 @@ if(isset($_POST['submi_t']))
         $pincode = $_POST['pincode'];
         $mobile_no = $_POST['mobile_no'];
         $address = $_POST['address'];
-        $sql= "INSERT INTO `contractor`(`contractor_id`,`email`, `city`,`contractor_name`,`website`,`office_no`, `pincode`, `mobile_no`,`address`) VALUES ('$contractor_id','$email','$city','$contractor_name','$website','$office_no','$pincode','$mobile_no','$address')";
+        $company = $_POST['company'];
+        $sql= "INSERT INTO `contractor`(`contractor_id`,`email`, `city`,`contractor_name`,`website`,`office_no`, `pincode`, `mobile_no`,`address`,`company_name`) VALUES ('$contractor_id','$email','$city','$contractor_name','$website','$office_no','$pincode','$mobile_no','$address','$company')";
         if (mysqli_query($conn, $sql)){
           echo "<script> alert ('New record has been added successfully !');</script>";
        } else {
@@ -40,9 +41,10 @@ if(isset($_POST['submi_t']))
   <link rel="stylesheet" href="plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+ <!-- Select2 -->
+ <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- BS Stepper -->
@@ -51,6 +53,16 @@ if(isset($_POST['submi_t']))
   <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <style>
+    .select2-container .select2-selection--single {
+      height: 34px !important;
+    }
+
+    .select2-container--default .select2-selection--single {
+      border: 1px solid #ccc !important;
+      border-radius: 4px !important;
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -111,6 +123,7 @@ if(isset($_POST['submi_t']))
 
                     </div>
                     <!-- /.form-group -->
+
                     <div class="form-group">
                       <label>Contractor Name</label>
                       <input type="text" class="form-control" placeholder="Contractor Name" name="contractor_name"
@@ -120,16 +133,33 @@ if(isset($_POST['submi_t']))
                     <!-- /.form-group -->
                   </div>
                   <!-- /.col -->
+
+                  
                   <div class="col-md-6">
                     <div class="form-group">
+
                       <label>Email</label>
                       <input type="text" class="form-control" placeholder="Email" name="email" id="email" required="">
 
                     </div>
+                    
                     <!-- /.form-group -->
                     <div class="form-group">
-                      <label>City</label>
-                      <input type="text" class="form-control" placeholder="City" name="city" id="city" required="">
+                      <label>Company Name</label>
+                      <?php 
+                   $query=mysqli_query($conn,"select * from company");
+                   ?>
+ 
+                       <select class="form-control select2" name="company" style="width: 100%;">
+                         <option selected="selected" disabled>select</option>
+                         <?php
+                    while($sql=mysqli_fetch_array($query))
+                    {
+                      ?>
+ 
+                         <option value="<?php echo $sql['company_name']; ?>"> <?php echo $sql['company_name']; ?></option>
+                         <?php } ?>
+                       </select>
 
                     </div>
                     <!-- /.form-group -->
@@ -148,6 +178,12 @@ if(isset($_POST['submi_t']))
                         required="">
 
                     </div>
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control" placeholder="city" name="city" id="city" required="">
+
+                    </div>
+                 
                     <!-- /.form-group -->
                   </div>
                   <div class="col-md-6">
@@ -164,16 +200,15 @@ if(isset($_POST['submi_t']))
                         required="">
 
                     </div>
-                    <!-- /.form-group -->
-                  </div>
-                  <div class="col-md-6">
                     <div class="form-group">
-                      <label>Address</label>
+                    <label>Address</label>
                       <input type="text" class="form-control" placeholder="Address" name="address" id="address"
                         required="">
 
                     </div>
+                    <!-- /.form-group -->
                   </div>
+                  
                 </div>
 
                 <div class="form-group">
@@ -209,6 +244,10 @@ if(isset($_POST['submi_t']))
   <!-- ./wrapper -->
 
   <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <script>
+    $('.select2').select2();
+  </script>
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

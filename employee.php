@@ -4,7 +4,7 @@ include('configure.php');
 
     if(isset($_POST['submit']))
     {
-        $name = $_POST['name'];
+        
         $age = $_POST['age'];
         $office_no = $_POST['office_no'];
         $address = $_POST['address'];
@@ -14,9 +14,10 @@ include('configure.php');
         $pincode = $_POST['pincode'];
         $contact_no = $_POST['contact_no'];
         $category=$_POST['category'];
+        $contractor=$_POST['contractor'];
         
-        $id=$_POST['company_name'];
-        $sql="INSERT INTO `employee`(`name`,`age`,`office_no`,`address`, `pincode`,`contact_no`,`employee_code`,`gender`, `emp_id`, `department`) VALUES ('$name','$age','$office_no','$address','$pincode','$contact_no','$employee_code','$gender','$id','$category')";
+        $company_name=$_POST['company_name'];
+        $sql="INSERT INTO `employee`(`age`,`office_no`,`address`, `pincode`,`contact_no`,`employee_code`,`gender`, `emp_id`, `department`,`company_name`,`contractor_name`) VALUES ('$age','$office_no','$address','$pincode','$contact_no','$employee_code','$gender','$company_name','$category','$company_name','$contractor')";
         if (mysqli_query($conn, $sql)){
           echo "<script> alert ('New record has been added successfully !');</script>";
        } else {
@@ -102,9 +103,12 @@ include('configure.php');
             <form class="form-sample" method="post">
               <!-- /.card-header -->
               <div class="card-body">
-                <div class="row">
+              <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
+                    
+
+
                       <label>Company Name</label>
 
                       <?php 
@@ -113,31 +117,50 @@ include('configure.php');
 
 
                       <select class="form-control select2" name="company_name" style="width: 100%;">
-                        <option selected="selected">select</option>
+                        <option selected="selected" disabled  >select</option>
                         <?php
                    while($sql=mysqli_fetch_array($query))
                    {
                      ?>
 
-                        <option value="<?php echo $sql['id'] ?>"> <?php echo $sql['company_name']; ?></option>
+                        <option value="<?php echo $sql['company_name'] ?>"> <?php echo $sql['company_name']; ?></option>
                         <?php } ?>
                       </select>
+                      </div>
+                      <div class="form-group">
+                      <label>Contractor Name</label>
+
+<?php 
+$query=mysqli_query($conn,"select * from contractor");
+?>
+
+
+<select class="form-control select2" name="contractor" style="width: 100%;">
+  <option selected="selected" disabled>select</option>
+  <?php
+while($sql=mysqli_fetch_array($query))
+{
+?>
+
+  <option value="<?php echo $sql['contractor_name'] ?>"> <?php echo $sql['contractor_name']; ?></option>
+  <?php } ?>
+</select>
 
                     </div>
                     <!-- /.form-group -->
-                    <div class="form-group">
-                      <label>Employee Name</label>
-                      <input type="text" class="form-control" name="name" placeholder="Enter Employee Name">
-                    </div>
+                    
+                    
                     <!-- /.form-group -->
                   </div>
-                  <!-- /.col -->
-
-
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>Employee Id</label>
-                      <input type="text" class="form-control" id="employee_code" name="employee_code" required="">
+
+                    <div class="form-group">
+                      <label>Employee ID</label>
+                      <input type="text" class="form-control" name="employee_code" placeholder="Enter Employee code">
+                    </div>
+                 
+
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
@@ -148,7 +171,6 @@ include('configure.php');
                   </div>
                   <!-- /.col -->
                 </div>
-                <!-- /.row -->
 
 
                 <div class="row">
@@ -199,7 +221,7 @@ include('configure.php');
 
 
                       <select class="form-control select2" name="category" style="width: 100%;">
-                        <option selected="selected">select</option>
+                        <option selected="selected" disabled>select</option>
                         <?php
                    while($sql=mysqli_fetch_array($query))
                    {
