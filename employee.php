@@ -4,7 +4,7 @@ include('configure.php');
 
     if(isset($_POST['submit']))
     {
-        
+      $name = $_POST['name'];
         $age = $_POST['age'];
         $office_no = $_POST['office_no'];
         $address = $_POST['address'];
@@ -17,7 +17,7 @@ include('configure.php');
         $contractor=$_POST['contractor'];
         
         $company_name=$_POST['company_name'];
-        $sql="INSERT INTO `employee`(`age`,`office_no`,`address`, `pincode`,`contact_no`,`employee_code`,`gender`, `emp_id`, `department`,`company_name`,`contractor_name`) VALUES ('$age','$office_no','$address','$pincode','$contact_no','$employee_code','$gender','$company_name','$category','$company_name','$contractor')";
+        $sql="INSERT INTO `employee`(`name`,`age`,`office_no`,`address`, `pincode`,`contact_no`,`employee_code`,`gender`, `emp_id`, `department`,`company_name`,`contractor_name`) VALUES ('$name','$age','$office_no','$address','$pincode','$contact_no','$employee_code','$gender','$company_name','$category','$company_name','$contractor')";
         if (mysqli_query($conn, $sql)){
           echo "<script> alert ('New record has been added successfully !');</script>";
        } else {
@@ -106,7 +106,11 @@ include('configure.php');
               <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                    
+                    <div class="form-group">
+                      <label>Employee ID</label>
+                      <input type="text" class="form-control" name="employee_code" placeholder="Enter Employee code">
+                    </div>
+
 
 
                       <label>Company Name</label>
@@ -126,9 +130,22 @@ include('configure.php');
                         <option value="<?php echo $sql['company_name'] ?>"> <?php echo $sql['company_name']; ?></option>
                         <?php } ?>
                       </select>
-                      </div>
-                      <div class="form-group">
-                      <label>Contractor Name</label>
+
+                    </div>
+                    <!-- /.form-group -->
+                    
+                    
+                    <!-- /.form-group -->
+                  </div>
+                  <div class="col-md-6">
+                    
+
+                    <div class="form-group">
+                      <label>Employee Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Enter Employee Name">
+                    </div>
+                    <div class="form-group">
+                    <label>Contractor Name</label>
 
 <?php 
 $query=mysqli_query($conn,"select * from contractor");
@@ -152,23 +169,7 @@ while($sql=mysqli_fetch_array($query))
                     
                     <!-- /.form-group -->
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-
-                    <div class="form-group">
-                      <label>Employee ID</label>
-                      <input type="text" class="form-control" name="employee_code" placeholder="Enter Employee code">
-                    </div>
                  
-
-                    </div>
-                    <!-- /.form-group -->
-                    <div class="form-group">
-                      <label>City</label>
-                      <input type="text" name="city" class="form-control">
-                    </div>
-                    <!-- /.form-group -->
-                  </div>
                   <!-- /.col -->
                 </div>
 
@@ -272,6 +273,16 @@ while($sql=mysqli_fetch_array($query))
                     </div>
                     <!-- /.form-group -->
                   </div>
+                  <div class="col-md-6">
+                   
+                 
+                   <!-- /.form-group -->
+                   <div class="form-group">
+                     <label>City</label>
+                     <input type="text" name="city" class="form-control">
+                   </div>
+                   <!-- /.form-group -->
+                 </div>
 
                 </div>
 
@@ -284,20 +295,18 @@ while($sql=mysqli_fetch_array($query))
                     Add
                   </button>
 
-                </div>
-
-            </form>
-          </div>
-        </div>
-        <!-- /.card-body -->
+                  </div>
+              </form>
+        
 
     </div>
-    <!-- /.card -->
 
-
-
-
-    <?php include("footer.php")?>
+  </div>
+  </section>
+  <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <?php include("footer.php")?>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

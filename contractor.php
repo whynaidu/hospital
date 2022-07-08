@@ -218,12 +218,9 @@ if(isset($_POST['submi_t']))
                     Add
                   </button>
 
-                </div>
+                  </div>
               </form>
-            </div> <!-- /.row -->
-          </div>
-
-        </div>
+        
 
     </div>
 
@@ -233,7 +230,6 @@ if(isset($_POST['submi_t']))
   </div>
   <!-- /.content-wrapper -->
   <?php include("footer.php")?>
-
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

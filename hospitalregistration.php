@@ -356,7 +356,7 @@ input[type=number] {
           
           <!-- /.card -->
 
-         
+          <?php include("footer.php")?>
 
           <!-- Control Sidebar -->
           <aside class="control-sidebar control-sidebar-dark">

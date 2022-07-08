@@ -183,7 +183,6 @@ include("configure.php");
         "responsive": true,
       });
     });
-
   </script>
 </body>
 
